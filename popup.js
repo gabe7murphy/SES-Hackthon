@@ -147,3 +147,6 @@ function setPageBackgroundColor() {
     document.body.style.backgroundColor = color;
   });
 }
+document.getElementById('optionsBtn').addEventListener('click', () => {
+  chrome.runtime.openOptionsPage();
+})
