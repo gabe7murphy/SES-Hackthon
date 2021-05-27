@@ -35,7 +35,38 @@ function addDonation(donation) {
     console.log("tag : " + donation.tag);
     // TODO: add code to save info to chrome storage 
 
+    var defaultValue = [];
+    chrome.storage.sync.get({donations: defaultValue}, function(data) {
+      console.log(data)
+      console.log(typeof(data))
+      console.log(data.donations)
+      console.log(typeof(data.donations))
+      data.donations.push(donation)
 
+      console.log("data.donations: " + data.donations)
+
+      chrome.storage.sync.set({donations: data.donations}, function() {
+        console.log("stored data!")
+        // The value is now stored, so you don't have to do this again
+      });
+    });
+
+
+    // chrome.storage.sync.get(["donations"], function(result) {
+    //   var array = result[storagekey]?result[storagekey]:[];
+
+    //   array.unshift(newArrEntry);
+
+    //   var jsonObj = {};
+    //   jsonObj[storagekey] = array;
+    //   chrome.storage.sync.set(jsonObj, function() {
+    //       console.log("Saved a new array item");
+    //   });
+    // }); 
+
+    // chrome.storage.sync.set({"charities": charity_name}, function() {
+    //   console.log('Value is set to ' + value);
+    // });
 }
 
 function documentEvents() {    
