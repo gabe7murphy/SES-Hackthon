@@ -1,14 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="button.css">
-  </head>
-  <body>
-    <div id="buttonDiv">
-    </div>
-    <div>
-      <p>Choose a different background color!</p>
-    </div>
-  </body>
-  <script src="options.js"></script>
+
+<head>
+  <script src="jquery-3.2.1.slim.min.js"></script>
+  <script src="popper.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght=400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="ed3998fccc.js"></script>
+
+  <style>
+    body {
+      font-family: 'Source Sans Pro', sans-serif;
+      text-align: center;
+      background-color: rgb(232, 248, 205);
+      font-size: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 40px;
+      display: rgb(202, 127, 236);
+      padding: 5px;
+      text-decoration: underline;
+    }
+
+    h2 {
+      font-size: 25px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    p {
+      font-size: 15px;
+    }
+  </style>
+
+<body>
+  <br>
+  <br>
+  <h1>Donate!</h1>
+  <h2>Previously Donated:</h2>
+  <ul id="donatedSites">
+  </ul>
+  <br>
+  <h2>Add a Cause: </h2>
+  <form>
+    <input type="text" id="inputLink" input size="75" name="add_link">
+    <button id="inputEnter">Add</button>
+  </form>
+  <br>
+
+  <script src="../options.js"></script>
+</body>
+
 </html>
