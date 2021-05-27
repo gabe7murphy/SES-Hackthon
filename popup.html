@@ -1,22 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="button.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   </head>
-  <body>
-    <label for="charity_name">Name of organization:</label><br>
-    <input type="text" id="charity_name">
-    <label for="amount">Amount of donation:</label><br>
-    <input type="text" id="amount">
-    <input type="radio" id="animal" name="tag" value="animal">
-    <label for="animal">Animal</label><br>
-    <input type="radio" id="education" name="tag" value="education">
-    <label for="education">Education</label><br>
-    <input type="radio" id="environment" name="tag" value="environment">
-    <label for="environment">Environment</label>
-    <button id="submit">Submit</button>
-    <button id="changeColor"></button>
-    <button type="button" id="optionsBtn">Open Dashboard</button>
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+    body{
+      width: 300px;
+    }
+  </style>
+  <body class="p-3">
+    <div class="text-center pt-2 pb-4">
+      <p class="fw-bold fs-2 my-0">Your Donation</p>
+      <a type="button" id="optionsBtn" class="link-primary mx-auto d-block">Open Dashboard</a>
+    </div>
+    
+
+    <form id="donationForm">
+      <div class="mb-3">
+        <label for="charity_name" class="form-label">Name of organization</label>
+        <input type="text" class="form-control" id="charity_name">
+      </div>
+      <div class="mb-3">
+        <label for="amount" class="form-label">Amount of donation</label><br>
+        <input type="text" id="amount" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label> Organization Category</label>
+        <select id="org-select" class="form-select">
+          <option id="animal" value="animal">Animal</option>
+          <option id="education" value="education">Education</option>
+          <option id="environment" value="environment">Environment</option>
+        </select>
+      </div>
+      <button id="submit-btn" class="btn btn-dark mx-auto d-block">Submit</button>
+    </form>
+    
     <script src="popup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   </body>
 </html>
