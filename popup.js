@@ -1,7 +1,7 @@
 // Initialize butotn with users's prefered color
 // let changeColor = document.getElementById("changeColor");
 let submit = document.getElementById("submit");
-document.addEventListener('DOMContentLoaded', documentEvents  , false);
+document.addEventListener('DOMContentLoaded', documentEvents, false);
 
 
 // chrome.storage.sync.get("color", ({ color }) => {
@@ -32,7 +32,10 @@ document.addEventListener('DOMContentLoaded', documentEvents  , false);
 function addDonation(donation) { 
     console.log("donation value is : " + donation);
     console.log("charity name: " + donation.charity_name);
+    console.log("tag : " + donation.tag);
     // TODO: add code to save info to chrome storage 
+
+
 }
 
 function documentEvents() {    
@@ -40,11 +43,23 @@ function documentEvents() {
     function() { 
       var charity_name = document.getElementById('charity_name').value
       var amount = document.getElementById('amount').value 
+      var tags = document.getElementsByName('tag')
+
+      var tag = ""
+      for (var i = 0, length = tags.length; i < length; i++) {
+        if (tags[i].checked) {
+          // do whatever you want with the checked radio
+          tag = tags[i].value
+      
+          // only one radio can be logically checked, don't check the rest
+          break;
+        }
+      }
 
       var donation = {
         "charity_name": charity_name,
         "amount": amount,
-        "tag": "temp",
+        "tag": tag,
         "date": Date()
       }
       addDonation(donation);
