@@ -1,47 +1,49 @@
-let page = document.getElementById("buttonDiv");
-let selectedClassName = "current";
-const presetButtonColors = ["#3aa757", "#e8453c", "#f9bb2d", "#4688f1"];
+const express = require('express');
+const router = express.Router(); 
+const elastic = require('elasticsearch'); 
+const bodyParser = require('body-parser').json(); 
+const elasticClient = elastic.Client({
+    host: 'localhost:5600',
+});
 
-// Reacts to a button click by marking marking the selected button and saving
-// the selection
-function handleButtonClick(event) {
-  // Remove styling from the previously selected color
-  let current = event.target.parentElement.querySelector(
-    `.${selectedClassName}`
-  );
-  if (current && current !== event.target) {
-    current.classList.remove(selectedClassName);
-  }
+router.use((req,res,next)=>{
 
-  // Mark the button as selected
-  let color = event.target.dataset.color;
-  event.target.classList.add(selectedClassName);
-  chrome.storage.sync.set({ color });
-}
+    elasticClient.index({
+        index: 'logs', 
+        body: {
 
-// Add a button to the page for each supplied color
-function constructOptions(buttonColors) {
-  chrome.storage.sync.get("color", (data) => {
-    let currentColor = data.color;
+            url: req.url, 
+            method: req.method,
+        }
+    })
+    .then(res=>{
+        console.log('Logs indexed') 
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+    next(); 
+});
 
-    // For each color we were provided…
-    for (let buttonColor of buttonColors) {
-      // …crate a button with that color…
-      let button = document.createElement("button");
-      button.dataset.color = buttonColor;
-      button.style.backgroundColor = buttonColor;
-
-      // …mark the currently selected color…
-      if (buttonColor === currentColor) {
-        button.classList.add(selectedClassName);
-      }
-
-      // …and register a listener for when that button is clicked
-      button.addEventListener("click", handleButtonClick);
-      page.appendChild(button);
-    }
-  });
-}
-
-// Initialize the page by constructing the color options
-constructOptions(presetButtonColors);
+router.post('/donations2/_doc', bodyParser, (req,res)=>{
+    elasticClient.index({
+        index: 'donations2', 
+        body: {
+            charity_name: "doctors w/o borders", 
+            amount: 500,
+            tag: "health", 
+            date: "5/03/2021"
+        }
+    })
+    .then(resp=>{
+        return res.status(200).json({
+            msg:'donation indexed'
+        });
+    })
+    .catch(err=>{
+        return res.status(500).json({
+            msg: 'Error',
+            err
+        }); 
+    }) 
+});
