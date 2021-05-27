@@ -3,11 +3,9 @@ const router = express.Router();
 const elastic = require('elasticsearch'); 
 const bodyParser = require('body-parser').json(); 
 const elasticClient = elastic.Client({
-    host: 'localhost:5600',
+    host: 'localhost:5601',
 });
-
-router.use((req,res,next)=>{
-
+/*
     elasticClient.index({
         index: 'logs', 
         body: {
@@ -23,9 +21,7 @@ router.use((req,res,next)=>{
         console.log(err)
     })
     next(); 
-});
-
-router.post('/donations2/_doc', bodyParser, (req,res)=>{
+*/
     elasticClient.index({
         index: 'donations2', 
         body: {
@@ -35,15 +31,3 @@ router.post('/donations2/_doc', bodyParser, (req,res)=>{
             date: "5/03/2021"
         }
     })
-    .then(resp=>{
-        return res.status(200).json({
-            msg:'donation indexed'
-        });
-    })
-    .catch(err=>{
-        return res.status(500).json({
-            msg: 'Error',
-            err
-        }); 
-    }) 
-});
