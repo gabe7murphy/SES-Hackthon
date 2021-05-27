@@ -26,36 +26,3 @@ axios.post('http://localhost:9200/donations2/_doc',
     .catch((error) => {
         console.log(error)
     })
-
-
-
-
-/*
-    elasticClient.index({
-        index: 'logs', 
-        body: {
-
-            url: req.url, 
-            method: req.method,
-        }
-    })
-    .then(res=>{
-        console.log('Logs indexed') 
-    })
-    .catch(err=>{
-        console.log(err)
-    })
-    next(); 
-*/
-
-/*
-elasticClient.index({
-    index: 'donations2',
-    body: {
-        charity_name: "doctors w/o borders",
-        amount: 500,
-        tag: "health",
-        date: "5/03/2021"
-    }
-})
-*/
