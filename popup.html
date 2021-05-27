@@ -16,16 +16,24 @@
       <p class="fw-bold fs-2 my-0">Your Donation</p>
       <a type="button" id="optionsBtn" class="link-primary mx-auto d-block">Open Dashboard</a>
     </div>
-    
+    <!-- <div id="formMessage">
 
-    <form id="donationForm">
+    </div> -->
+
+    <form id="donationForm" class="needs-validation">
       <div class="mb-3">
         <label for="charity_name" class="form-label">Name of organization</label>
         <input type="text" class="form-control" id="charity_name">
+        <div class="invalid-feedback">
+          Enter the name of the organization
+        </div>
       </div>
       <div class="mb-3">
         <label for="amount" class="form-label">Amount of donation</label><br>
         <input type="text" id="amount" class="form-control">
+        <div class="invalid-feedback">
+          Enter your donation amount
+        </div>
       </div>
       <div class="mb-3">
         <label> Organization Category</label>
@@ -35,7 +43,10 @@
           <option id="environment" value="environment">Environment</option>
         </select>
       </div>
-      <button id="submit-btn" class="btn btn-dark mx-auto d-block">Submit</button>
+      <!-- <div class="border-top pt-2"> -->
+        <button id="submit-btn" class="btn btn-dark mx-auto d-block mt-4 mb-3">Submit</button>
+      <!-- </div> -->
+      
     </form>
     
     <script src="popup.js"></script>

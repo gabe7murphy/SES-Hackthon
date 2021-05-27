@@ -26,7 +26,7 @@ function addDonation(donation) {
         console.log("stored data!")
         // The value is now stored, so you don't have to do this again
       });
-    });
+  });
 
 
     // chrome.storage.sync.get(["donations"], function(result) {
@@ -48,15 +48,28 @@ function addDonation(donation) {
 
 function documentEvents() {    
   submit.addEventListener('click', () => { 
-      var charity_name = document.getElementById('charity_name').value;
-      var amount = document.getElementById('amount').value;
+    
+      var charity_input = document.getElementById("charity_name");
+      var amount_input = document.getElementById("amount");
+      var charity_name = charity_input.value.trim().toLowerCase();
+      var amount = amount_input.value.trim();
       var tag = document.getElementById("org-select").value;
+
+      
+      charity_name === "" ?  charity_input.classList.add("is-invalid") : charity_input.classList.remove("is-invalid");
+      amount === "" ? amount_input.classList.add("is-invalid") : amount_input.classList.remove("is-invalid");
+       
+      if ((charity_name === "") || (amount===""))
+        return;
+
       var donation = {
         "charity_name": charity_name,
         "amount": amount,
         "tag": tag,
         "date": Date()
       }
+      charity_input.value = "";
+      amount_input.value = "";
       addDonation(donation);
   });
 
