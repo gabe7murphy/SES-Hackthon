@@ -62,8 +62,6 @@ async function sendData(data) {
 
 
 
-
-
 function documentEvents() {
   submit.addEventListener('click', () => {
 
