@@ -6,7 +6,8 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage", "activeTab", "scripting", "http://localhost:9200/donations2/_doc"],
+  "host_permissions": ["http://localhost:9200/donations2/_doc"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
